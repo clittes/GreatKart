@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section-content padding-y bg">
+<div class="container">
+
+<div class="row justify-content-center">
+    <aside class="col-md-7">
+
+<div class="card mx-auto shadow-sm border-0" style="margin-top:40px; border-radius:15px;">
+    <article class="card-body">
+
+        <header class="mb-4 text-center">
+            <h2 class="card-title fw-bold">Create Account</h2>
+            <p class="text-muted">Register your new account</p>
+        </header>
+
+        <form action="{% url 'register' %}" method="POST">
+
+            {% csrf_token %}
+
+            <!-- NON FIELD ERRORS -->
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <!-- FIRST & LAST NAME -->
+            <div class="form-row">
+
+                <div class="col form-group">
+                    <label>First Name</label>
+                    {{ form.first_name }}
+
+                    {% if form.first_name.errors %}
+                        {% for error in form.first_name.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="col form-group">
+                    <label>Last Name</label>
+                    {{ form.last_name }}
+
+                    {% if form.last_name.errors %}
+                        {% for error in form.last_name.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <!-- EMAIL & PHONE -->
+            <div class="form-row">
+
+                <div class="col form-group">
+                    <label>Email Address</label>
+                    {{ form.email }}
+
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="col form-group">
+                    <label>Phone Number</label>
+                    {{ form.phone_number }}
+
+                    {% if form.phone_number.errors %}
+                        {% for error in form.phone_number.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="form-row">
+
+                <div class="col form-group">
+                    <label>Create Password</label>
+                    {{ form.password }}
+
+                    {% if form.password.errors %}
+                        {% for error in form.password.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="col form-group">
+                    <label>Confirm Password</label>
+                    {{ form.confirm_password }}
+
+                    {% if form.confirm_password.errors %}
+                        {% for error in form.confirm_password.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+
+      
+
+            <!-- SUBMIT BUTTON -->
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary btn-block py-2">
+                    Register
+                </button>
+            </div>
+
+        </form>
+
+    </article>
+</div>
+
+<p class="text-center mt-4">
+    Already have an account?
+    <a href="{% url 'login' %}">Login</a>
+</p>
+
+    </aside>
+</div>
+
+</div>
+</section>
+
+<style>
+
+body{
+    background:#f4f6f9;
+}
+
+.card{
+    background:#fff;
+}
+
+.form-control{
+    height:45px;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.btn-primary{
+    border-radius:8px;
+    font-size:17px;
+    font-weight:600;
+}
+
+label{
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.text-danger{
+    font-size:14px;
+}
+
+.alert ul{
+    padding-left:18px;
+}
+
+</style>
+
+{% endblock %}

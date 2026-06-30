@@ -25,7 +25,7 @@ INSTALLED_APPS = [
 
     'category',
     'accounts',
-
+    'store',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'category.context_processors.menu_links',
             ],
         },
     },
